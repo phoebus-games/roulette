@@ -4,7 +4,7 @@ import roulette.app.RouletteController
 import roulette.infra.RouletteRepo
 
 object App {
-  def main(args: String): Unit = {
+  def main(args: Array[String]): Unit = {
     new App().run()
   }
 }
