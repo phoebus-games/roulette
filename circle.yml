@@ -10,6 +10,7 @@ dependencies:
 test:
   override:
     - mvn verify -Dmongodb.write-concern=ACKNOWLEDGED
+        timeout: 180
   post:
     - mkdir -p $CIRCLE_TEST_REPORTS/junit/
     - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
