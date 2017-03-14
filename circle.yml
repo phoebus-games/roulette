@@ -5,6 +5,7 @@ machine:
     - docker
 dependencies:
   pre:
+    - sudo service --status-all
     - sudo service mysql stop
     - sudo service postgresql stop
     - git clone git@github.com:phoebus-games/games.git /tmp/games
