@@ -15,7 +15,7 @@ import scala.beans.BeanProperty
 case class NumberBetRequest(@BeanProperty amount:Money, @BeanProperty number:Int)
 case class BetRequest(@BeanProperty amount:Money)
 
-@Path("/games/roulette")
+@Path("/api/games/roulette")
 class RouletteController @Inject() (repo: RouletteRepo) {
 
   // TOOD - remove
@@ -39,23 +39,23 @@ class RouletteController @Inject() (repo: RouletteRepo) {
     )).build()
   }
 
-  private def getWallet(uri: URI) = new HttpWallet(uri, "roulette", "roulette")
-
   @POST
   @Path("/bets/number")
   def addNumbersBet(@HeaderParam("PlayerId") playerId: String, @HeaderParam("Wallet") uri: URI, numberBet: NumberBetRequest): Response =
     addBet(playerId, uri, NumberBet(numberBet.amount, Pocket(numberBet.number)))
 
-  private def addBet(playerId: String, uri: URI, bet: Bet) :Response= {
+  @POST
+  @Path("/bets/red")
+  def addRedBet(@HeaderParam("PlayerId") playerId: String, @HeaderParam("Wallet") uri: URI, bet: BetRequest): Response =
+    addBet(playerId, uri, RedBet(bet.amount))
+
+  private def addBet(playerId: String, uri: URI, bet: Bet): Response = {
     val wallet = getWallet(uri)
     repo.set(playerId, repo.get(playerId, wallet).addBet(bet))
     Response.created(URI.create(".")).entity(Map("balance" -> wallet.getBalance)).build()
   }
 
-  @POST
-  @Path("/bets/red")
-  def addRedBet(@HeaderParam("PlayerId") playerId: String, @HeaderParam("Wallet") uri: URI, bet: BetRequest): Response =
-    addBet(playerId, uri, RedBet(bet.amount))
+  private def getWallet(uri: URI) = new HttpWallet(uri, "roulette", "roulette")
 
   @POST
   @Path("/bets/black")

@@ -15,7 +15,7 @@ class RouletteControllerIT extends IntegrationTest(new App) {
     super.before()
 
     RestAssured.requestSpecification = spec
-      .setBasePath("/games/roulette")
+      .setBasePath("/api/games/roulette")
       .setContentType(ContentType.JSON)
       .setAccept(ContentType.JSON)
       .build()
