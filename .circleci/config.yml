@@ -25,4 +25,4 @@ jobs:
       - run: docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - run: docker build --rm=false -t alexec/roulette:$CIRCLE_SHA1 .
       - run: docker push alexec/roulette
-      - run: deploy.sh
+      - run: ./deploy.sh
