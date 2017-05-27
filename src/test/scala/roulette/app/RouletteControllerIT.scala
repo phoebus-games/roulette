@@ -7,9 +7,8 @@ import io.restassured.RestAssured.given
 import io.restassured.http.ContentType
 import org.hamcrest.Matchers.{equalTo, notNullValue}
 import org.junit.{Before, Test}
-import roulette.App
 
-class RouletteControllerIT extends IntegrationTest(new App) {
+class RouletteControllerIT extends IntegrationTest {
 
   @Before override def before(): Unit = {
     super.before()
