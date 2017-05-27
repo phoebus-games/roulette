@@ -7,7 +7,10 @@ import io.restassured.RestAssured.given
 import io.restassured.http.ContentType
 import org.hamcrest.Matchers.{equalTo, notNullValue}
 import org.junit.{Before, Test}
+import org.springframework.test.context.ContextConfiguration
+import roulette.App
 
+@ContextConfiguration(classes = Array(classOf[App]))
 class RouletteControllerIT extends IntegrationTest {
 
   @Before override def before(): Unit = {

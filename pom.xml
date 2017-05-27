@@ -12,10 +12,6 @@
 
     <artifactId>roulette</artifactId>
 
-    <properties>
-        <game.mainClass>roulette.App</game.mainClass>
-    </properties>
-
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
@@ -62,8 +58,8 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

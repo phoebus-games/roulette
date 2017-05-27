@@ -1,7 +1,6 @@
 package roulette
 
 import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.SpringBootApplication
 import roulette.app.RouletteController
 import roulette.infra.RouletteRepo
 
@@ -11,8 +10,6 @@ object App {
   }
 }
 
-
-@SpringBootApplication
 class App extends games.App {
   register(classOf[RouletteController])
   bind(new RouletteRepo(mongo, writeConcern), classOf[RouletteRepo])
